@@ -1,0 +1,27 @@
+name: Genera Report Automatico
+
+on:
+  schedule:
+    - cron: '0 6 * * *' # Si attiva tutti i giorni alle 06:00
+  workflow_dispatch: # Ti permette di avviarlo anche a mano quando vuoi
+
+jobs:
+  crea-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scarica il codice
+        uses: actions/checkout@v3
+
+      - name: Configura Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Esegui lo script
+        run: python noleggi.py
+
+      - name: Salva il report generato
+        uses: actions/upload-artifact@v3
+        with:
+          name: cartella-reports
+          path: reports/
