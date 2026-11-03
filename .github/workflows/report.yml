@@ -2,8 +2,8 @@ name: Genera Report Automatico
 
 on:
   schedule:
-    - cron: '0 6 * * *' # Si attiva tutti i giorni alle 06:00
-  workflow_dispatch: # Ti permette di avviarlo anche a mano quando vuoi
+    - cron: '0 6 * * *'
+  workflow_dispatch:
 
 jobs:
   crea-report:
@@ -21,7 +21,7 @@ jobs:
         run: python noleggi.py
 
       - name: Salva il report generato
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: cartella-reports
-          path: reports/
+          path: reports
